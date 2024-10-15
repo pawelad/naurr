@@ -1,0 +1,15 @@
+# Django
+Django
+dj-database-url
+gunicorn
+whitenoise
+
+# Django REST Framework
+djangorestframework
+markdown
+
+# PostgreSQL
+psycopg[binary]
+
+# Utils
+python-decouple

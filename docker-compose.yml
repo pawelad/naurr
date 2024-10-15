@@ -1,0 +1,43 @@
+x-common-variables: &common-variables
+  DATABASE_URL: "postgres://postgres@db/naurr"
+
+services:
+  db:
+    image: "postgres:16.4"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_DB: "naurr"
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data/"
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: "."
+      target: "app"
+    image: "naurr-app:latest"
+    command: "--reload"
+    environment: *common-variables
+    env_file: ".env"
+    volumes:
+      - ".:/home/naurr/app"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "db"
+
+  dev:
+    build:
+      context: "."
+      target: "dev"
+    image: "naurr-dev:latest"
+    environment: *common-variables
+    env_file: ".env"
+    volumes:
+      - ".:/home/naurr/app"
+    depends_on:
+      - "db"
+
+volumes:
+  postgres_data:
