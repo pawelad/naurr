@@ -1,0 +1,16 @@
+-c main.txt
+
+# Code style
+black
+interrogate
+isort
+ruff
+
+# Type checking
+django-stubs
+mypy
+types-dj-database-url
+
+# Tooling
+nox
+pip-tools
