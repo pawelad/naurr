@@ -1,7 +1,6 @@
-"""naurr - Father of Nótt, the personified night."""
+"""naurr"""
 
 __title__ = "naurr"
-__description__ = "Father of Nótt, the personified night."
 __version__ = "0.0.1"
 __url__ = "https://github.com/pawelad/naurr"
 __author__ = "Paweł Adamczak"
