@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # naurr
     "naurr",
+    "filesystem",
     # Third party
     "rest_framework",
 ]
