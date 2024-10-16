@@ -1,4 +1,4 @@
-"""naurr utils."""
+"""naurr app utils."""
 
 from collections import defaultdict
 
