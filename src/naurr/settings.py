@@ -7,6 +7,8 @@ from django.core.exceptions import ImproperlyConfigured
 from decouple import Choices, Csv, config
 from dj_database_url import parse as db_url
 
+from naurr import __title__, __version__
+
 SRC_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = SRC_DIR.parent
 
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
     # Third party
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -137,4 +140,13 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+###################
+# drf-spectacular #
+###################
+SPECTACULAR_SETTINGS = {
+    "TITLE": __title__,
+    "VERSION": __version__,
 }

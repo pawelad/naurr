@@ -18,7 +18,9 @@ asgiref==3.8.1 \
 attrs==24.2.0 \
     --hash=sha256:5cfb1b9148b5b086569baec03f20d7b6bf3bcacc9a42bebf87ffaaca362f6346 \
     --hash=sha256:81921eb96de3191c8258c199618104dd27ac608d9366f5e35d011eae1867ede2
-    # via interrogate
+    # via
+    #   -c requirements/main.txt
+    #   interrogate
 black==24.10.0 \
     --hash=sha256:14b3502784f09ce2443830e3133dacf2c0110d45191ed470ecb04d0f5f6fcb0f \
     --hash=sha256:17374989640fbca88b6a448129cd1745c5eb8d9547b464f281b251dd00155ccd \
