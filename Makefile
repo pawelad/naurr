@@ -54,6 +54,11 @@ format: ## Format code
 	isort src/ tests/ noxfile.py
 	ruff check --fix src/ tests/ noxfile.py
 
+.PHONY: test
+test: ## Run the test suite
+	docker compose up --detach db
+	nox
+
 .PHONY: docker-build
 docker-build: ## Build Docker compose stack
 	docker compose build
@@ -72,7 +77,7 @@ docker-shell: ## Run bash inside dev Docker image
 
 .PHONY: clean
 clean: ## Clean dev artifacts
-	rm -rf .mypy_cache/ .nox/ .ruff_cache/
+	rm -rf .mypy_cache/ .nox/ .pytest_cache/ .ruff_cache/
 
 # Source: https://www.client9.com/self-documenting-makefiles/
 .PHONY: help
