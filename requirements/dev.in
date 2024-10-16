@@ -6,6 +6,11 @@ interrogate
 isort
 ruff
 
+# Tests
+coverage[toml]
+pytest
+pytest-django
+
 # Type checking
 mypy
 django-stubs
