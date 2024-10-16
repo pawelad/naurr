@@ -17,7 +17,10 @@ asgiref==3.8.1
 attrs==24.2.0
     # via
     #   -r requirements/dev.txt
+    #   -r requirements/main.txt
     #   interrogate
+    #   jsonschema
+    #   referencing
 black==24.10.0
     # via -r requirements/dev.txt
 build==1.2.2.post1
@@ -52,6 +55,7 @@ django==5.1.2
     #   django-stubs
     #   django-stubs-ext
     #   djangorestframework
+    #   drf-spectacular
 django-stubs==5.1.0
     # via -r requirements/dev.txt
 django-stubs-ext==5.1.0
@@ -59,6 +63,10 @@ django-stubs-ext==5.1.0
     #   -r requirements/dev.txt
     #   django-stubs
 djangorestframework==3.15.2
+    # via
+    #   -r requirements/main.txt
+    #   drf-spectacular
+drf-spectacular==0.27.2
     # via -r requirements/main.txt
 filelock==3.16.1
     # via
@@ -66,10 +74,22 @@ filelock==3.16.1
     #   virtualenv
 gunicorn==23.0.0
     # via -r requirements/main.txt
+inflection==0.5.1
+    # via
+    #   -r requirements/main.txt
+    #   drf-spectacular
 interrogate==1.7.0
     # via -r requirements/dev.txt
 isort==5.13.2
     # via -r requirements/dev.txt
+jsonschema==4.23.0
+    # via
+    #   -r requirements/main.txt
+    #   drf-spectacular
+jsonschema-specifications==2024.10.1
+    # via
+    #   -r requirements/main.txt
+    #   jsonschema
 markdown==3.7
     # via -r requirements/main.txt
 mypy==1.12.0
@@ -115,6 +135,20 @@ pyproject-hooks==1.2.0
     #   pip-tools
 python-decouple==3.8
     # via -r requirements/main.txt
+pyyaml==6.0.2
+    # via
+    #   -r requirements/main.txt
+    #   drf-spectacular
+referencing==0.35.1
+    # via
+    #   -r requirements/main.txt
+    #   jsonschema
+    #   jsonschema-specifications
+rpds-py==0.20.0
+    # via
+    #   -r requirements/main.txt
+    #   jsonschema
+    #   referencing
 ruff==0.6.9
     # via -r requirements/dev.txt
 sqlparse==0.5.1
@@ -141,6 +175,10 @@ typing-extensions==4.12.2
     #   django-stubs-ext
     #   mypy
     #   psycopg
+uritemplate==4.1.1
+    # via
+    #   -r requirements/main.txt
+    #   drf-spectacular
 virtualenv==20.26.6
     # via
     #   -r requirements/dev.txt
