@@ -8,7 +8,7 @@ from filesystem.models import File, Folder
 class FolderSerializer(serializers.ModelSerializer):
     """DRF serializer for `filesystem.Folder` model."""
 
-    files = serializers.SlugRelatedField(
+    files: serializers.Field = serializers.SlugRelatedField(
         slug_field="name",
         many=True,
         read_only=True,

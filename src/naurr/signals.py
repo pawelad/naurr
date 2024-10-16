@@ -4,7 +4,7 @@ from collections.abc import Callable
 from typing import Any
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -14,7 +14,7 @@ from rest_framework.authtoken.models import Token
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(
     sender: Callable,
-    instance: get_user_model() | None = None,
+    instance: User,  # TODO: Can the typing hint support `settings.AUTH_USER_MODEL`?
     created: bool = False,
     **kwargs: Any,
 ) -> None:

@@ -7,8 +7,9 @@ isort
 ruff
 
 # Type checking
-django-stubs
 mypy
+django-stubs
+djangorestframework-stubs
 types-dj-database-url
 
 # Tooling

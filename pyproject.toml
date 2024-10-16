@@ -24,7 +24,10 @@ sections = "FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
 [tool.mypy]
 python_version = "3.12"
 mypy_path = "src"
-plugins = ["mypy_django_plugin.main"]
+plugins = [
+  "mypy_django_plugin.main",
+  "mypy_drf_plugin.main",
+]
 exclude = ["migrations"]
 
 [[tool.mypy.overrides]]
