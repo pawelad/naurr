@@ -8,9 +8,12 @@ from django.urls import URLPattern, URLResolver, include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 from rest_framework.authtoken.views import obtain_auth_token
 
+from naurr.views import InfoView
+
 api_patterns: tuple[list[URLPattern | URLResolver], str] = (
     [
         # API
+        path("info", InfoView.as_view(), name="info"),
         path("", include("filesystem.urls", namespace="filesystem")),
         # Schema and docs
         path("schema/", SpectacularAPIView.as_view(), name="schema"),
