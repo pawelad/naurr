@@ -10,23 +10,22 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 from naurr.views import InfoView
 
-api_patterns: tuple[list[URLPattern | URLResolver], str] = (
-    [
-        # API
-        path("info", InfoView.as_view(), name="info"),
-        path("", include("filesystem.urls", namespace="filesystem")),
-        # Schema and docs
-        path("schema/", SpectacularAPIView.as_view(), name="schema"),
-        path("docs/", SpectacularRedocView.as_view(url_name="api:schema"), name="docs"),
-        # DRF views
-        path("auth/", include("rest_framework.urls", namespace="rest_framework")),
-        path("auth/obtain_token", obtain_auth_token, name="obtain_token"),
-    ],
-    "api",
-)
+api_patterns: list[URLPattern | URLResolver] = [
+    # API
+    path("info", InfoView.as_view(), name="info"),
+    path("", include("filesystem.urls", namespace="filesystem")),
+    # Schema and docs
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("docs/", SpectacularRedocView.as_view(url_name="api:schema"), name="docs"),
+]
+
 
 urlpatterns = [
+    # API
+    path("api/", include((api_patterns, "api"), namespace="api")),
+    # DRF views (need to be outside of `api` namespace)
+    path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("api/auth/obtain_token", obtain_auth_token, name="obtain_token"),
     # Django Admin
     path("admin/", admin.site.urls),
-    path("api/", include(api_patterns, namespace="api")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
