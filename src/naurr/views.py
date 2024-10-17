@@ -16,6 +16,7 @@ class InfoView(APIView):
     """Return API information."""
 
     http_method_names = ["get"]
+    serializer_class = InfoSerializer
 
     def get(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         """Return API information."""
@@ -27,7 +28,7 @@ class InfoView(APIView):
             "user": user_serializer.data,
         }
 
-        info_serializer = InfoSerializer(data=info)
+        info_serializer = self.serializer_class(data=info)
         info_serializer.is_valid(raise_exception=True)
 
         return Response(info_serializer.data)
