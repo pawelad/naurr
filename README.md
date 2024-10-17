@@ -87,6 +87,10 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 # Database URL
 # Docs: https://github.com/jazzband/dj-database-url#url-schema
 DATABASE_URL=postgres://postgres@localhost/naurr
+
+# Sentry DSN. If not set, Sentry integration will be disabled.
+# Docs: https://docs.sentry.io/platforms/python/#configure
+SENTRY_DSN='https://*****@*****.ingest.sentry.io/*****'
 ```
 
 ## Makefile

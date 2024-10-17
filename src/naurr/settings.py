@@ -149,10 +149,27 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 100,
 }
 
-###################
-# drf-spectacular #
-###################
+###############
+# Third-party #
+###############
+
+# drf-spectacular
 SPECTACULAR_SETTINGS = {
     "TITLE": __title__,
     "VERSION": __version__,
 }
+
+# sentry-sdk
+SENTRY_DSN = config("SENTRY_DSN", default=None)
+
+if SENTRY_DSN:  # pragma: no cover
+    import sentry_sdk
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        release=__version__,
+        environment=ENVIRONMENT,
+        send_default_pii=True,
+        traces_sample_rate=1,
+        profiles_sample_rate=0.5,
+    )

@@ -15,3 +15,4 @@ psycopg[binary]
 # Utils
 pydantic
 python-decouple
+sentry-sdk[django]
