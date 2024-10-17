@@ -19,7 +19,7 @@ class InfoSerializer(serializers.Serializer):
 
     version = serializers.CharField()
     environment = serializers.CharField()
-    user = serializers.DictField()
+    user = serializers.DictField()  # TODO: Why doesn't `UserSerializer()` work?
 
     class Meta:
         fields = ("version", "environment", "user")

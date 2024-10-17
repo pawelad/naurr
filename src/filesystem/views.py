@@ -2,14 +2,17 @@
 
 from typing import Any
 
-from drf_spectacular.utils import extend_schema, extend_schema_view
+import pydantic
+from drf_spectacular.utils import extend_schema, extend_schema_view, inline_serializer
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
+from rest_framework.fields import IntegerField
 from rest_framework.request import Request
 from rest_framework.response import Response
 
 from filesystem.models import File, Folder
-from filesystem.serializers import FileSerializer, FolderSerializer
+from filesystem.serializers import FileSerializer, FolderBulkAddSchema, FolderSerializer
 
 
 @extend_schema_view(
@@ -44,9 +47,13 @@ from filesystem.serializers import FileSerializer, FolderSerializer
             "nested dictionary, where the key is the (unique) name of the group, "
             "and the value is a list of file names."
         ),
-        # TODO: Add actual `request` and `response` schemas
-        request=None,
-        responses=None,
+        request=FolderBulkAddSchema,
+        responses={
+            "201": inline_serializer(
+                "SavedFoldersInfo",
+                {"saved_folders": IntegerField(), "saved_files": IntegerField()},
+            )
+        },
     ),
 )
 class FolderViewSet(viewsets.ModelViewSet):
@@ -65,9 +72,15 @@ class FolderViewSet(viewsets.ModelViewSet):
         The input format should be a single nested dictionary, where the key is
         the (unique) name of the group, and the value is a list of file names.
         """
-        grouped_values = request.data
+        try:
+            grouped_values = FolderBulkAddSchema(request.data)
+        except pydantic.ValidationError as e:
+            errors_data: Any = e.errors()
+            raise ValidationError({"errors": errors_data}) from e
 
-        saved_folders, saved_files = Folder.save_from_grouped_values(grouped_values)
+        saved_folders, saved_files = Folder.save_from_grouped_values(
+            grouped_values.model_dump()
+        )
 
         data = {
             "saved_folders": saved_folders,

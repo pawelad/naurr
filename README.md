@@ -3,6 +3,8 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 [![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][rickroll]
 
+Last seen at https://naurr.pawelad.me/.
+
 ## Running locally
 The easiest way run naurr locally is to install [Docker] and run:
 
@@ -68,7 +70,7 @@ Available settings:
 
 ```
 # App environment. Should be set to one of: "local" or "production"
-ENVIRONMENT='local'
+ENVIRONMENT=local
 
 # Django secret key; should be unique, long and private
 # Docs: https://docs.djangoproject.com/en/5.1/ref/settings/#secret-key

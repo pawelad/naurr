@@ -1,5 +1,6 @@
 """filesystem app DRF serializers."""
 
+from pydantic import RootModel
 from rest_framework import serializers
 
 from filesystem.models import File, Folder
@@ -32,3 +33,9 @@ class FileSerializer(serializers.ModelSerializer):
         model = File
         fields = ("id", "name", "folder")
         read_only_fields = ("created_at", "modified_at")
+
+
+class FolderBulkAddSchema(RootModel):
+    """Schema for folder and files 'bulk add' input data."""
+
+    root: dict[str, list[str]]

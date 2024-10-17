@@ -13,4 +13,5 @@ markdown
 psycopg[binary]
 
 # Utils
+pydantic
 python-decouple
