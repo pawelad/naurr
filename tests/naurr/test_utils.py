@@ -12,10 +12,49 @@ test_data = [
             "adhoc_charge_amt_usd",
             "admin_refund_amt",
             "admin_refund_amt_usd",
+            "source",
         ],
         {
             "adhoc_charge_amt": ["adhoc_charge_amt", "adhoc_charge_amt_usd"],
             "admin_refund_amt": ["admin_refund_amt", "admin_refund_amt_usd"],
+            "source": ["source"],
+        },
+    ),
+    # If there's only one value in a group, we want it to be the least descriptive
+    (
+        [
+            "delivery_promotion_discount_amt",
+            "delivery_promotion_discount_amt_usd",
+            "delivery_promotion_id",
+        ],
+        {
+            "delivery_promotion_discount_amt": [
+                "delivery_promotion_discount_amt",
+                "delivery_promotion_discount_amt_usd",
+            ],
+            "delivery": ["delivery_promotion_id"],
+        },
+    ),
+    # In this case, we want `delivery_promotion_id` to be grouped under `delivery`
+    # and not `delivery_promotion`
+    (
+        [
+            "delivery_promotion_discount_amt",
+            "delivery_promotion_discount_amt_usd",
+            "delivery_promotion_id",
+            "delivery_fee_modifier",
+            "delivery_type",
+        ],
+        {
+            "delivery_promotion_discount_amt": [
+                "delivery_promotion_discount_amt",
+                "delivery_promotion_discount_amt_usd",
+            ],
+            "delivery": [
+                "delivery_fee_modifier",
+                "delivery_type",
+                "delivery_promotion_id",
+            ],
         },
     ),
 ]
