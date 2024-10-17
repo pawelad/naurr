@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog], and this project adheres to
 
 ## Unreleased
 
+## [v0.1.0](https://github.com/pawelad/naurr/releases/tag/v0.1.0) - 2024-10-17
 ### Added
 - Project release.
 
