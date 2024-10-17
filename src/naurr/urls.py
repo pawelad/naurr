@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import URLPattern, URLResolver, include, path
+from django.views.generic import RedirectView
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 from rest_framework.authtoken.views import obtain_auth_token
@@ -21,6 +22,7 @@ api_patterns: list[URLPattern | URLResolver] = [
 
 
 urlpatterns = [
+    path("", RedirectView.as_view(pattern_name="api:docs")),
     # API
     path("api/", include((api_patterns, "api"), namespace="api")),
     # DRF views (need to be outside of `api` namespace)
