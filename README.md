@@ -1,5 +1,5 @@
 # naurr
-[![License](https://img.shields.io/github/license/pawelad/fakester.svg)][license]
+[![License](https://img.shields.io/github/license/pawelad/naurr.svg)][license]
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 [![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][rickroll]
 
@@ -15,7 +15,8 @@ $ # Run Docker compose stack
 $ make docker-run
 ```
 
-If everything went well, naurr should be available at http://localhost:8000/.
+If everything went well, naurr API should be available at http://localhost:8000/api/
+and the docs should be available at http://localhost:8000/api/docs/.
 
 Alternatively, you can also run it without [Docker], but you need to have [PostgreSQL]
 installed and running locally:
@@ -51,7 +52,7 @@ JSON file with:
 $ python src/manage.py group_values_by_prefix --input_file=names.csv --output_file=grouped_names.json
 ```
 
-You can then load that JSON data directly to the database by performing an API call:
+You can then load that JSON data directly to the database by performing couple API calls:
 
 ```console
 $ # I'm using HTTPie (https://httpie.io/cli) as my API client
@@ -63,18 +64,18 @@ $ http --body POST http://localhost:8000/api/folder/bulk_add/ "Authorization:Tok
 
 ### Configuration
 All configurable settings are loaded from environment variables and a local `.env`
-file (in that order). Note that when running locally through Docker Compose, you
-need to restart the app for it to pick up the changes.
+file (in that order). Note that when running locally through [Docker], you need
+to restart the app for it to pick up the changes.
 
 Available settings:
 
 ```
 # App environment. Should be set to one of: "local" or "production"
-ENVIRONMENT=local
+ENVIRONMENT='local'
 
 # Django secret key; should be unique, long and private
 # Docs: https://docs.djangoproject.com/en/5.1/ref/settings/#secret-key
-SECRET_KEY=CHANGE_ME
+SECRET_KEY='CHANGE_ME'
 
 # Controls Django's debug mode. Can't be enabled on a non-local enviroment.
 # Docs: https://docs.djangoproject.com/en/5.1/ref/settings/#debug
@@ -82,11 +83,11 @@ DEBUG=True
 
 # Comma separated list of allowed hosts
 # Docs: https://docs.djangoproject.com/en/5.1/ref/settings/#allowed-hosts
-ALLOWED_HOSTS=localhost,127.0.0.1
+ALLOWED_HOSTS='localhost,127.0.0.1'
 
 # Database URL
 # Docs: https://github.com/jazzband/dj-database-url#url-schema
-DATABASE_URL=postgres://postgres@localhost/naurr
+DATABASE_URL='postgres://postgres@localhost/naurr'
 
 # Sentry DSN. If not set, Sentry integration will be disabled.
 # Docs: https://docs.sentry.io/platforms/python/#configure
