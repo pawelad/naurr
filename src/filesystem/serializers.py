@@ -1,28 +1,12 @@
 """filesystem app DRF serializers."""
 
-from pydantic import RootModel
 from rest_framework import serializers
 
 from filesystem.models import File, Folder
 
 
-class FolderSerializer(serializers.ModelSerializer):
-    """DRF serializer for `filesystem.Folder` model."""
-
-    files: serializers.Field = serializers.SlugRelatedField(
-        slug_field="name",
-        many=True,
-        read_only=True,
-    )
-
-    class Meta:
-        model = Folder
-        fields = ("id", "name", "files")
-        read_only_fields = ("created_at", "modified_at")
-
-
 class FileSerializer(serializers.ModelSerializer):
-    """DRF serializer for `filesystem.File` model."""
+    """Main DRF serializer for `filesystem.File` model."""
 
     folder = serializers.SlugRelatedField(
         slug_field="name",
@@ -32,10 +16,22 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ("id", "name", "folder")
-        read_only_fields = ("created_at", "modified_at")
 
 
-class FolderBulkAddSchema(RootModel):
-    """Schema for folder and files 'bulk add' input data."""
+class FileNestedSerializer(serializers.ModelSerializer):
+    """Nested DRF serializer for `filesystem.File` model."""
 
-    root: dict[str, list[str]]
+    class Meta:
+        model = File
+        fields = ("id", "name")
+
+
+class FolderSerializer(serializers.ModelSerializer):
+    """Main DRF serializer for `filesystem.Folder` model."""
+
+    files = FileNestedSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Folder
+        fields = ("id", "name", "files")
+        read_only_fields = ("files",)

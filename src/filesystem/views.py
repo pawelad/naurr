@@ -4,6 +4,7 @@ from typing import Any
 
 import pydantic
 from drf_spectacular.utils import extend_schema, extend_schema_view, inline_serializer
+from pydantic import RootModel
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
@@ -12,7 +13,13 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from filesystem.models import File, Folder
-from filesystem.serializers import FileSerializer, FolderBulkAddSchema, FolderSerializer
+from filesystem.serializers import FileSerializer, FolderSerializer
+
+
+class FolderBulkAddSchema(RootModel):
+    """Schema for folder and files 'bulk add' input data."""
+
+    root: dict[str, list[str]]
 
 
 @extend_schema_view(
