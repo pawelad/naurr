@@ -72,7 +72,7 @@ docker-stop: ## Stop Docker compose stack
 	docker compose down
 
 .PHONY: docker-shell
-docker-shell: ## Run bash inside dev Docker image
+docker-shell: ## Run bash inside dev container
 	docker compose run --rm dev /bin/bash
 
 .PHONY: clean

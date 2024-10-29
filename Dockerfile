@@ -12,7 +12,7 @@ ENV HOME="/home/$USER"
 ENV APP_DIR="$HOME/app"
 ENV VIRTUAL_ENV="$HOME/venv"
 
-# Install runtime dependencies
+# Install system dependencies
 RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
 RUN --mount=type=cache,sharing=locked,target=/var/lib/apt/lists \
     --mount=type=cache,sharing=locked,target=/var/cache/apt \
