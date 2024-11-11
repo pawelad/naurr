@@ -1,7 +1,7 @@
 # naurr
 [![License](https://img.shields.io/github/license/pawelad/naurr.svg)][license]
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
-[![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][rickroll]
+[![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][pep561]
 
 Last seen at https://naurr.pawelad.me/.
 
@@ -130,5 +130,5 @@ Released under [Mozilla Public License 2.0][license].
 [github naurr]: https://github.com/pawelad/naurr
 [license]: ./LICENSE
 [pawelad]: https://pawelad.me/
+[pep561]: https://peps.python.org/pep-0561/
 [postgresql]: https://www.postgresql.org/
-[rickroll]: https://www.youtube.com/watch?v=I6OXjnBIW-4&t=15s
