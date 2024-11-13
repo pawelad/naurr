@@ -3,6 +3,10 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
 [![py.typed](https://img.shields.io/badge/py-typed-FFD43B)][pep561]
 
+Simple API to group passed values by their prefixes.
+
+Created for a take home interview assignment.
+
 Last seen at https://naurr.pawelad.me/.
 
 ## Running locally
